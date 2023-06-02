@@ -1,0 +1,13 @@
+name: cicd
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  label:
+    uses: labsonline/cicd/.github/workflows/label.yml@main
+  lint:
+    uses: labsonline/cicd/.github/workflows/lint.yml@main
+  review:
+    uses: labsonline/cicd/.github/workflows/review.yml@main
