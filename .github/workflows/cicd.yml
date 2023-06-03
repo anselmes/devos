@@ -1,13 +1,17 @@
-name: cicd
+name: Gate CI
 
 on:
-  - push
-  - pull_request
+  push: {}
+  pull_request: {}
+  schedule:
+    - cron: 30 1 * * 6
 
 jobs:
-  label:
-    uses: labsonline/cicd/.github/workflows/label.yml@main
-  lint:
-    uses: labsonline/cicd/.github/workflows/lint.yml@main
   review:
     uses: labsonline/cicd/.github/workflows/review.yml@main
+  gate:
+    uses: labsonline/cicd/.github/workflows/gate.yml@main
+  scorecard:
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@main
+  cleanup:
+    uses: labsonline/cicd/.github/workflows/cleanup.yml@main
