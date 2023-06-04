@@ -7,8 +7,6 @@ on:
     - cron: 30 1 * * 6
 
 jobs:
-  review:
-    uses: labsonline/cicd/.github/workflows/review.yml@main
   gate:
     uses: labsonline/cicd/.github/workflows/gate.yml@main
   scorecard:
