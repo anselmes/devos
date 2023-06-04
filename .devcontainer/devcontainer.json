@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-  "name": "Sandbox",
+  "name": "Dev Container",
 
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   // "image": "mcr.microsoft.com/devcontainers/base:dev-ubuntu",
@@ -101,7 +101,6 @@
         // "patbenatar.advanced-new-file",
         // "redhat.vscode-xml",
         // "redhat.vscode-yaml",
-        // "trunk.io",
         // "VisualStudioExptTeam.intellicode-api-usage-examples",
         // "VisualStudioExptTeam.vscodeintellicode",
         // "vscode-icons-team.vscode-icons",
