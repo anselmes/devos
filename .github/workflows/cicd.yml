@@ -11,6 +11,7 @@ permissions: read-all
 jobs:
   gate:
     uses: labsonline/cicd/.github/workflows/gate.yml@main
+    permissions: write-all
   scorecard:
     uses: labsonline/cicd/.github/workflows/scorecard.yml@main
     permissions:
