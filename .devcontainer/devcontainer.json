@@ -23,93 +23,14 @@
     //   "moby": true,
     //   "azureDnsAutoDetection": true,
     //   "installDockerBuildx": true
-    // },
-    // "ghcr.io/devcontainers-contrib/features/act:1": {},
-    // "ghcr.io/devcontainers-contrib/features/actionlint:1": {},
-    // "ghcr.io/devcontainers-contrib/features/actions-runner:1": {},
-    // "ghcr.io/devcontainers-contrib/features/age:1": {},
-    // "ghcr.io/devcontainers-contrib/features/autoenv:1": {},
-    // "ghcr.io/devcontainers-contrib/features/cloudflared:1": {},
-    // "ghcr.io/devcontainers-contrib/features/cosign:1": {},
-    // "ghcr.io/devcontainers-contrib/features/curl-apt-get:1": {},
-    // "ghcr.io/devcontainers-contrib/features/direnv-asdf:2": {},
-    // "ghcr.io/devcontainers-contrib/features/grpcurl-asdf:2": {},
-    // "ghcr.io/devcontainers-contrib/features/jfrog-cli:1": {},
-    // "ghcr.io/devcontainers-contrib/features/kind:1": {},
-    // "ghcr.io/devcontainers-contrib/features/kyverno-cli:1": {},
-    // "ghcr.io/devcontainers-contrib/features/opa:1": {},
-    // "ghcr.io/devcontainers-contrib/features/packer-asdf:2": {},
-    // "ghcr.io/devcontainers-contrib/features/sops:1": {},
-    // "ghcr.io/devcontainers-contrib/features/upx:1": {},
-    // "ghcr.io/devcontainers-contrib/features/vault-asdf:2": {},
-    // "ghcr.io/devcontainers-contrib/features/yamllint:2": {},
-    // "ghcr.io/devcontainers/features/git-lfs:1": {},
-    // "ghcr.io/devcontainers/features/git:1": {},
-    // "ghcr.io/devcontainers/features/github-cli:1": {},
-    // "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-    // "ghcr.io/dhoeric/features/hadolint:1": {},
-    // "ghcr.io/dhoeric/features/trivy:1": {},
-    // "ghcr.io/eitsupi/devcontainer-features/jq-likes:1": {},
-    // "ghcr.io/flexwie/devcontainer-features/op:1": {},
-    // "ghcr.io/jsburckhardt/devcontainer-features/flux:1": {},
-    // "ghcr.io/jungaretti/features/make:1": {},
-    // "ghcr.io/lentzi90/features/clusterctl:0": {},
-    // "ghcr.io/lukewiwa/features/shellcheck:0": {},
-    // "ghcr.io/rio/features/kustomize:1": {},
-    // "ghcr.io/trunk-io/devcontainer-feature/trunk:1": {}
-  },
+    // }
+  }
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [ 6443, 8080, 8443 ],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "sudo ${containerWorkspaceFolder}/cmd/run.sh",
-
-  // Configure tool-specific properties.
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        // "aaron-bond.better-comments",
-        // "christian-kohler.path-intellisense",
-        // "codezombiech.gitignore",
-        // "cschlosser.doxdocgen",
-        // "DavidAnson.vscode-markdownlint",
-        // "Dmytro.TL-Verilog",
-        // "eamodio.gitlens",
-        // "EditorConfig.EditorConfig",
-        // "epivision.vscode-file-header",
-        // "esbenp.prettier-vscode",
-        // "exiasr.hadolint",
-        // "fnando.linter",
-        // "GitHub.codespaces",
-        // "GitHub.copilot-nightly",
-        // "GitHub.vscode-codeql",
-        // "github.vscode-github-actions",
-        // "GitHub.vscode-pull-request-github",
-        // "hbenl.vscode-test-explorer",
-        // "hediet.vscode-drawio",
-        // "jerrygoyal.shortcut-menu-bar",
-        // "mikestead.dotenv",
-        // "minherz.copyright-inserter",
-        // "mkhl.shfmt",
-        // "ms-azuretools.vscode-docker",
-        // "ms-kubernetes-tools.kind-vscode",
-        // "ms-kubernetes-tools.vscode-kubernetes-tools",
-        // "ms-vscode.hexeditor",
-        // "ms-vscode.makefile-tools",
-        // "ms-vscode.test-adapter-converter",
-        // "patbenatar.advanced-new-file",
-        // "redhat.vscode-xml",
-        // "redhat.vscode-yaml",
-        // "VisualStudioExptTeam.intellicode-api-usage-examples",
-        // "VisualStudioExptTeam.vscodeintellicode",
-        // "vscode-icons-team.vscode-icons",
-        // "wayou.vscode-todo-highlight",
-        // "zhwu95.riscv",
-        // "zxh404.vscode-proto3"
-      ]
-    }
-  }
+  // "postCreateCommand": "sudo ${containerWorkspaceFolder}/tools/setup-vscode.sh",
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "vscode"

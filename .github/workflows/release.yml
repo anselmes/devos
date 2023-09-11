@@ -1,0 +1,14 @@
+name: Releases
+
+on:
+  push:
+    branches:
+      - main
+
+permissions: read-all
+
+jobs:
+  release:
+    uses: labsonline/cicd/.github/workflows/release.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+    permissions:
+      contents: write

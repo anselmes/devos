@@ -1,35 +1,25 @@
-name: Gate CI
+name: Contiuos Integration
 
 on:
-  push: {}
-  pull_request: {}
-  schedule:
-    - cron: 30 1 * * 6
+  - push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 
 permissions: read-all
 
 jobs:
-  gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@main
-    permissions: write-all
-  scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@main
-    permissions:
-      actions: read
-      checks: read
-      contents: read
-      deployments: read
-      discussions: read
-      issues: read
-      packages: read
-      pages: read
-      pull-requests: read
-      repository-projects: read
-      statuses: read
-      id-token: write
-      security-events: write
-  cleanup:
-    uses: labsonline/cicd/.github/workflows/cleanup.yml@main
+  bot:
+    uses: labsonline/cicd/.github/workflows/bot.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
     permissions:
       issues: write
       pull-requests: write
+      repository-projects: write
+  gate:
+    uses: labsonline/cicd/.github/workflows/gate.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+  scorecard:
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+    permissions:
+      id-token: write
+      security-events: write
