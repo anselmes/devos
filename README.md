@@ -2,6 +2,22 @@
 
 ---
 
+[![OpenSSF Scorecard][ossf-score-badge]][ossf-score-link]
+[![Contiuos Integration][ci-badge]][ci-link]
+[![Review][review-badge]][review-link]
+[![Releases][releases-badge]][releases-link]
+
+[ossf-score-badge]: https://api.securityscorecards.dev/projects/github.com/labsonline/devcontainer/badge
+[ossf-score-link]: https://securityscorecards.dev/viewer/?uri=github.com/labsonline/devcontainer
+[ci-badge]: https://github.com/labsonline/devcontainer/actions/workflows/cicd.yml/badge.svg
+[ci-link]: https://github.com/labsonline/devcontainer/actions/workflows/cicd.yml
+[review-badge]: https://github.com/labsonline/devcontainer/actions/workflows/review.yml/badge.svg
+[review-link]: https://github.com/labsonline/devcontainer/actions/workflows/review.yml
+[releases-badge]: https://github.com/labsonline/devcontainer/actions/workflows/release.yml/badge.svg
+[releases-link]: https://github.com/labsonline/devcontainer/actions/workflows/release.yml
+
+---
+
 Copyright (c) 2023 Schubert Anselme <schubert@anselm.es>
 
 This program is free software: you can redistribute it and/or modify

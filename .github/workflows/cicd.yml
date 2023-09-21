@@ -5,21 +5,26 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+    uses: labsonline/cicd/.github/workflows/bot.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
+  # Uncomment if you want to use the codeql workflow
+  # ast:
+  #   uses: labsonline/cicd/.github/workflows/ast.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
+  #   with:
+  #     codeql-language: python
   gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+    uses: labsonline/cicd/.github/workflows/gate.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@424f749d3881c969d360beadb70ed8614066be03 # v0.1.2 https://github.com/labsonline/cicd/commit/424f749d3881c969d360beadb70ed8614066be03
+    uses: labsonline/cicd/.github/workflows/scorecard.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
     permissions:
       id-token: write
       security-events: write

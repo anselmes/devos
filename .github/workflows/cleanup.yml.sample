@@ -1,0 +1,26 @@
+name: Cleanup
+
+on:
+  pull_request:
+    types:
+      - closed
+  schedule:
+    - cron: 30 1 * * 6
+  workflow_dispatch: {}
+
+permissions: read-all
+
+# Add custom review jobs here
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is a cleanup job"
+
+  # The following is required and added automatically (do no add it manually)
+  # cleanup:
+  #   uses: labsonline/cicd/.github/workflows/cleanup.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
+  #   permissions:
+  #     contents: write
+  #     issues: write
+  #     pull-requests: write
