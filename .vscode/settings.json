@@ -9,7 +9,6 @@
     "**/.trunk/*plugins/": true,
     "**/.trunk/*tools/": true
   },
-  "trunk.trunkGrayOutNonBlockingIssues": false,
   "files.watcherExclude": {
     "**/.trunk/*actions/": true,
     "**/.trunk/*logs/": true,
@@ -27,7 +26,10 @@
   "git.enableSmartCommit": true,
   "git.timeline.showUncommitted": true,
   "git.alwaysSignOff": true,
-  "git.branchProtection": ["main", "master"],
+  "git.branchProtection": [
+    "main",
+    "master"
+  ],
   "git.autoStash": true,
   "git.pruneOnFetch": true,
   "git.rebaseWhenSync": true,
@@ -37,7 +39,19 @@
   "files.trimTrailingWhitespace": true,
   "gitlens.views.worktrees.files.layout": "list",
   "git.followTagsWhenSync": true,
-  "[markdown]": {
+  "[gitignore]": {
     "editor.defaultFormatter": "trunk.io"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "trunk.io"
+  },
+  "rust-analyzer.restartServerOnConfigChange": true,
+  "rust-analyzer.testExplorer": true,
+  "rust-analyzer.server.extraEnv": {
+    "CARGO_HOME": "/usr/local/rust/cargo",
+    "RUSTUP_HOME": "/usr/local/rust/rustup"
   }
 }

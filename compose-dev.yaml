@@ -1,18 +1,18 @@
-version: "3.9"
+---
 services:
   devcontainer:
-    image: ghcr.io/sanselme/devcontainer:latest
-    privileged: true
+    image: ubuntu:22.04
+    # platform: linux/amd64
+    # entrypoint: /sbin/init
+    # privileged: true
     stdin_open: true
     tty: true
-    working_dir: /workspace
+    working_dir: /root/workspace
     env_file:
       - .env
     volumes:
-      - .:/workspace
-    ports:
-      - 10022:22
-      - 10080:80
-      - 10443:443
-      - 15900:5900
-      - 16443:6443
+      - .:/root/workspace
+      - ~/.gitconfig:/root/.gitconfig:ro
+      - ~/.gnupg:/root/.gnupg # fixme: investigate mounting as read-only
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.zshrc:/root/.zshrc:ro
