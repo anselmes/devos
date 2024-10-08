@@ -124,7 +124,7 @@ fi
 
 # Configure devos
 if [[ ${CONFIG} == true ]]; then
-  multipass exec "${NAME}" -- sudo "${DEST}/scripts/build-devos.sh"
+  multipass exec "${NAME}" -- sudo "${DEST}/scripts/init-devos.sh"
   multipass exec "${NAME}" -- "${DEST}/scripts/config-devos.sh"
   multipass exec "${NAME}" -- bash -c 'eval $(ssh-agent -s) && ssh-add -l || true'
   multipass exec "${NAME}" -- gpg -k
