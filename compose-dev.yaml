@@ -1,6 +1,6 @@
 ---
 services:
-  devcontainer:
+  devos:
     image: ubuntu:22.04
     # platform: linux/amd64
     # entrypoint: /sbin/init
