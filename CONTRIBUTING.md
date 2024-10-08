@@ -2,4 +2,4 @@
 
 ## To Contribute
 
-Open a PR https://github.com/labsonline/devcontainer/compare.
+Open a PR https://github.com/anselmes/devos/compare.
