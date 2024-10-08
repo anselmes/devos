@@ -1,0 +1,44 @@
+name: Scorecard
+
+on:
+  workflow_call:
+    inputs:
+      score-card-token:
+        type: string
+        description: GitHub token for Scorecard to use for publishing results
+      publish-results:
+        type: boolean
+        description: Whether to publish results to OpenSSF REST API
+
+permissions:
+  contents: write
+  id-token: write
+  security-events: write
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run analysis
+        uses: ossf/scorecard-action@62b2cac7ed8198b15735ed49ab1e5cf35480ba46 # v2.4.0 https://github.com/ossf/scorecard-action/commit/62b2cac7ed8198b15735ed49ab1e5cf35480ba46
+        with:
+          publish_results: true
+          results_file: results.sarif
+          results_format: sarif
+
+      - name: Upload artifact
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          path: results.sarif
+
+      - name: Upload to code-scanning
+        uses: github/codeql-action/upload-sarif@b8efe4dc6ab6d31abe3ec159420d2a4916880800 # v3.26.6 https://github.com/github/codeql-action/commit/b8efe4dc6ab6d31abe3ec159420d2a4916880800
+        with:
+          sarif_file: results.sarif

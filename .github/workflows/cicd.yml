@@ -11,20 +11,22 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: labsonline/cicd/.github/workflows/bot.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
+    uses: ./.github/workflows/ondemand/bot.yml
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
-  # Uncomment if you want to use the codeql workflow
-  # ast:
-  #   uses: labsonline/cicd/.github/workflows/ast.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
-  #   with:
-  #     codeql-language: python
-  gate:
-    uses: labsonline/cicd/.github/workflows/gate.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
+
+  sonarqube:
+    uses: ./.github/workflows/gate/sonarqube.yml
+  trivy:
+    uses: ./.github/workflows/gate/trivy.yml
+  devos:
+    uses: ./.github/workflows/gate/devos.yml
+
   scorecard:
-    uses: labsonline/cicd/.github/workflows/scorecard.yml@6e038f38f0819ffec0ea23e23efd8a1a0a4a4537 # v0.1.4 https://github.com/labsonline/cicd/commit/6e038f38f0819ffec0ea23e23efd8a1a0a4a4537
+    uses: ./.github/workflows/ondemand/scorecard.yml
     permissions:
+      contents: write
       id-token: write
       security-events: write

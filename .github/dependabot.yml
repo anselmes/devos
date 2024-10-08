@@ -2,6 +2,14 @@ version: 2
 updates:
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: github-actions
-    directory: /
+    directories:
+      - /.github/actions
+      - /.github/workflows
     schedule:
       interval: daily
+  # Maintain dependencies for Devcontainers
+  - package-ecosystem: devcontainers
+    directories:
+      - /.devcontainer
+    schedule:
+      interval: monthly
