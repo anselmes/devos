@@ -2,35 +2,15 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
   "name": "Dev Container",
-
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   // "image": "mcr.microsoft.com/devcontainers/base:dev-ubuntu",
   // "build": {"dockerfile": "${localWorkspaceFolder}/build/package/Dockerfile"},
-  "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
+  "dockerComposeFile": [
+    "${localWorkspaceFolder}/compose-dev.yaml"
+  ],
   "service": "devcontainer",
   "workspaceFolder": "/workspace",
-
-  // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "INSTALLZSH": true,
-      "CONFIGUREZSHASDEFAULTSHELL": true,
-      "INSTALLOHMYZSH": true,
-      "UPGRADEPACKAGES": true,
-      "NONFREEPACKAGES": true
-    }
-    // "ghcr.io/devcontainers/features/docker-in-docker:2": {
-    // 	"MOBY": true,
-    // 	"INSTALLDOCKERBUILDX": true
-    // }
-  },
-
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [ 6443, 8080, 8443 ],
-
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "sudo ${containerWorkspaceFolder}/tools/setup-vscode.sh",
-
+  "postCreateCommand": "${containerWorkspaceFolder}/scripts/setup-devcontainer.sh"
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-  "remoteUser": "vscode"
 }
