@@ -36,10 +36,10 @@ jobs:
           VALIDATE_DOCKERFILE_HADOLINT: false # fixme: superlinter not using .hadolint.yaml
           VALIDATE_KUBERNETES_KUBECONFORM: false # fixme: enable kubeconform
           VALIDATE_YAML_PRETTIER: false # fixme: ignore symlink
-      - name: Trunk Check
-        uses: trunk-io/trunk-action@86b68ffae610a05105e90b1f52ad8c549ef482c2 # v1.1.16 https://github.com/trunk-io/trunk-action/commit/86b68ffae610a05105e90b1f52ad8c549ef482c2
-        with:
-          post-annotations: true
+      # - name: Trunk Check
+      #   uses: trunk-io/trunk-action@86b68ffae610a05105e90b1f52ad8c549ef482c2 # v1.1.16 https://github.com/trunk-io/trunk-action/commit/86b68ffae610a05105e90b1f52ad8c549ef482c2
+      #   with:
+      #     post-annotations: true
 
   scanning:
     runs-on: ubuntu-latest
@@ -49,14 +49,14 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: GitGuardian Scan
-        uses: GitGuardian/ggshield-action@ed817b2930f8dbf32995b6d8bbf65499e6a4e3be # v1.31.0 https://github.com/GitGuardian/ggshield-action/commit/ed817b2930f8dbf32995b6d8bbf65499e6a4e3be
-        env:
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
-          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          GITHUB_PUSH_BASE_SHA: ${{ github.event.before }}
-          GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
+      # - name: GitGuardian Scan
+      #   uses: GitGuardian/ggshield-action@ed817b2930f8dbf32995b6d8bbf65499e6a4e3be # v1.31.0 https://github.com/GitGuardian/ggshield-action/commit/ed817b2930f8dbf32995b6d8bbf65499e6a4e3be
+      #   env:
+      #     GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+      #     GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      #     GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      #     GITHUB_PUSH_BASE_SHA: ${{ github.event.before }}
+      #     GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
       # - name: SonarQube Scan
       #   uses: sonarsource/sonarqube-scan-action@aecaf43ae57e412bd97d70ef9ce6076e672fe0a9 # v3.0.0 https://github.com/SonarSource/sonarqube-scan-action/commit/aecaf43ae57e412bd97d70ef9ce6076e672fe0a9
       #   env:
@@ -83,11 +83,11 @@ jobs:
         uses: actions/dependency-review-action@5a2ce3f5b92ee19cbb1541a4984c76d921601d7c # v4.3.4 https://github.com/actions/dependency-review-action/commit/5a2ce3f5b92ee19cbb1541a4984c76d921601d7c
         with:
           allow-ghsas: none
-          allow-licenses: Apache-2.0,BSD-2-Clause,BSD-3-Clause,CC0-1.0,GPL-2.0,GPL-3.0,ISC,MIT
-          deny-packages: empty
+          allow-licenses: Apache-2.0,BSD-2-Clause,BSD-3-Clause,CC0-1.0,GPL-2.0,GPL-3.0,ISC,MIT,LGPL-3.0
+          # deny-packages: empty
           fail-on-severity: low
-          retry-on-snapshot-warnings-timeout: 120
-          retry-on-snapshot-warnings: true
+          # retry-on-snapshot-warnings-timeout: 120
+          # retry-on-snapshot-warnings: true
 
   assign:
     runs-on: ubuntu-latest

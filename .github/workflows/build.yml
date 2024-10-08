@@ -1,4 +1,4 @@
-name: Build
+name: Build Pipeline
 
 on:
   push:
@@ -15,6 +15,10 @@ permissions: read-all
 jobs:
   container:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
@@ -25,8 +29,9 @@ jobs:
         uses: ./.github/actions/build
         with:
           build-container-image: true
-          container-image-file: build/img/devos/Dockerfile
+          container-image-file: build/img/Dockerfile
           container-image-name: devos
+          container-image-platforms: linux/amd64,linux/arm64,linux/riscv64
           container-image-repo-password: ${{ secrets.GHCR_TOKEN }}
           container-image-repo-username: ${{ github.repository_owner }}
           push-container-image: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}

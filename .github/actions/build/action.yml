@@ -63,7 +63,7 @@ runs:
         username: ${{ github.repository_owner }}
         password: ${{ inputs.container-image-repo-password }}
     - name: Build and push
-      id: push
+      id: build
       uses: docker/build-push-action@5cd11c3a4ced054e52742c5fd54dca954e0edd85 # v6.7.0 https://github.com/docker/build-push-action/commit/5cd11c3a4ced054e52742c5fd54dca954e0edd85
       if: ${{ inputs.build-container-image == 'true' }}
       with:
@@ -81,7 +81,9 @@ runs:
         cache-to: type=gha,mode=max
     - name: Attest Build Provenance
       uses: actions/attest-build-provenance@1c608d11d69870c2092266b3f9a6f3abbf17002c # v1.4.3 https://github.com/actions/attest-build-provenance/commit/1c608d11d69870c2092266b3f9a6f3abbf17002c
+      if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
       with:
-        subject-name: ${{ steps.push.outputs.metadata.image.name }} #${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        subject-digest: ${{ steps.push.outputs.digest }}
+        subject-name: ${{ steps.build.outputs.metadata.image.name }} #${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         push-to-registry: true
+        subject-digest: ${{ steps.build.outputs.digest }}
+        subject-path: ${{ inputs.container-image-file }}

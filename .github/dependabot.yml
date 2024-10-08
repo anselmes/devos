@@ -13,3 +13,9 @@ updates:
       - /.devcontainer
     schedule:
       interval: monthly
+  # Maintain dependencies for Container Images
+  - package-ecosystem: docker
+    directories:
+      - /build/img
+    schedule:
+      interval: weekly
