@@ -253,7 +253,6 @@ plugins=(
   "view-serviceaccount-kubeconfig"
   "view-utilization"
 )
-
 for p in "${plugins[@]}"; do
   KREW_ROOT="${KREW_ROOT}" /usr/local/krew/bin/kubectl-krew install "${p}"
 done
