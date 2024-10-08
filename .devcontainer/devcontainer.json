@@ -6,25 +6,24 @@
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   // "image": "mcr.microsoft.com/devcontainers/base:dev-ubuntu",
   // "build": {"dockerfile": "${localWorkspaceFolder}/build/package/Dockerfile"},
-  "dockerComposeFile": ["${localWorkspaceFolder}/.docker/docker-compose.yaml"],
+  "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
   "service": "devcontainer",
   "workspaceFolder": "/workspace",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true,
-      "upgradePackages": true,
-      "nonFreePackages": true
+      "INSTALLZSH": true,
+      "CONFIGUREZSHASDEFAULTSHELL": true,
+      "INSTALLOHMYZSH": true,
+      "UPGRADEPACKAGES": true,
+      "NONFREEPACKAGES": true
     }
     // "ghcr.io/devcontainers/features/docker-in-docker:2": {
-    //   "moby": true,
-    //   "azureDnsAutoDetection": true,
-    //   "installDockerBuildx": true
+    // 	"MOBY": true,
+    // 	"INSTALLDOCKERBUILDX": true
     // }
-  }
+  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [ 6443, 8080, 8443 ],
@@ -33,5 +32,5 @@
   // "postCreateCommand": "sudo ${containerWorkspaceFolder}/tools/setup-vscode.sh",
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-  // "remoteUser": "vscode"
+  "remoteUser": "vscode"
 }
