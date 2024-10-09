@@ -1,0 +1,21 @@
+name: Trivy
+
+on:
+  - workflow_call
+
+permissions: read-all
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Trivy Scan
+        uses: ./.github/actions/trivy
+        # with:
+        #   generate-sbom: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        #   upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
