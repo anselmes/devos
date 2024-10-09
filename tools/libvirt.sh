@@ -17,8 +17,16 @@ for command in "${commands[@]}"; do
 done
 
 ARGS=${@}
-DIR="$(dirname $(realpath $(dirname $0)))"
+
 NAME="devos"
+ARCH="arm64"
+VERSION="noble"
+
+DIR="$(dirname $(realpath $(dirname $0)))"
+DEST="/var/lib/libvirt/images"
+
+IMG="${DEST}/${VERSION}.img"
+VOL="${DEST}/${NAME}.img"
 
 # Parse Arguments
 while [[ $# -gt 0 ]]; do
@@ -36,6 +44,11 @@ while [[ $# -gt 0 ]]; do
       [[ -z ${NAME} ]] && echo "Name is required" && exit 1
       shift 2
       ;;
+    --sshkey)
+      SSHKEY="${2}"
+      [[ -z ${SSHKEY} ]] && echo "SSH Key is required" && exit 1
+      shift 2
+      ;;
     --install)
       INSTALL=true
       shift
@@ -44,8 +57,8 @@ while [[ $# -gt 0 ]]; do
       CREATE=true
       shift
       ;;
-    --configure)
-      CONFIGURE=true
+    --config)
+      CONFIG=true
       shift
       ;;
     --cleanup)
@@ -91,9 +104,18 @@ ARGS: ${ARGS}
 """
 fi
 
+# cleanup
 if [[ ${CLEANUP} == true ]]; then
-  # todo: cleanup
-  echo "cleaning up!!!"
+  vbmc delete "${NAME}"
+  virsh destroy "${NAME}" || true
+  virsh undefine --nvram
+  virsh undefine "${NAME}" || true
+  rm -f "/tmp/${NAME}-cidata.iso"
+  rm -f "/tmp/metadata"
+  rm -f "/tmp/userdata"
+  rm -f "${VOL}"
+  virsh list --all
+  vbmc list
 fi
 
 # install vbmc
@@ -101,15 +123,67 @@ if [[ ${INSTALL} == true ]]; then
   pip install virtualbmc
 fi
 
+# create vm
+if [[ ${CREATE} == true ]]; then
+  # download image
+  if [[ ! -f "${IMG}" ]]; then
+    curl -fsSLo "${IMG}" "http://cloud-images.ubuntu.com/${VERSION}/current/${VERSION}-server-cloudimg-${ARCH}.img"
+    qemu-img info "${IMG}"
+  fi
+
+  # create volume
+  if [[ ! -f "${VOL}" ]]; then
+    qemu-img create -b "${IMG}" -f qcow2 -F qcow2 "${VOL}" 16G
+    qemu-img info "${VOL}"
+  fi
+
+  # create metadata
+  cat <<eof > /tmp/metadata
+instance-id: ${NAME}
+local-hostname: ${NAME}
+eof
+
+  # create userdata
+  cat <<eof > /tmp/userdata
+#cloud-config
+users:
+  - name: ${NAME}
+    groups: sudo
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - "${SSHKEY:-$(cat ~/.ssh/id_ed25519.pub)}"
+eof
+
+  ISOCMD="genisoimage"
+  if [[ -z $(command -v ${ISOCMD}) ]]; then
+    ISOCMD="mkisofs"
+    if [[ -z $(command -v ${ISOCMD}) ]]; then
+      echo "genisoimage nor mkisofs found"
+      exit 1
+    fi
+  fi
+  ${ISOCMD} -output /tmp/${NAME}-cidata.iso -volid cidata -joliet -rock /tmp/userdata /tmp/metadata
+
+  # check vm exists
+  if [[ -z $(virsh list --all | grep "${NAME}") ]]; then
+    virt-install \
+      --name ${NAME} \
+      --os-variant ubuntu20.04 \
+      --memory 2048 \
+      --network none \
+      --vcpus 2 \
+      --disk path=${VOL},format=qcow2 \
+      --disk path=/tmp/${NAME}-cidata.iso,device=cdrom \
+      --import \
+      --noautoconsole
+  fi
+fi
+
+# configure vbmc
+if [[ ${CONFIG} == true ]]; then
+  grep -q "${NAME}" <(vbmc list) || vbmc add "${NAME}"
+fi
+
 virsh list --all
 vbmc list
-
-if [[ ${CREATE} == true ]]; then
-  # todo: create vm
-  echo "creating vm!!!"
-fi
-
-if [[ ${CONFIG} == true ]]; then
-  # todo: configure vbmc
-  echo "configuring vbmc!!!"
-fi
