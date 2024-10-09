@@ -86,4 +86,4 @@ runs:
         subject-name: ${{ steps.build.outputs.metadata.image.name }} #${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         push-to-registry: true
         subject-digest: ${{ steps.build.outputs.digest }}
-        subject-path: ${{ inputs.container-image-file }}
+        # subject-path: ${{ inputs.container-image-file }}
