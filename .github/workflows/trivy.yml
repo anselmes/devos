@@ -3,7 +3,10 @@ name: Trivy
 on:
   - workflow_call
 
-permissions: read-all
+permissions:
+  contents: write
+  id-token: write
+  security-events: write
 
 jobs:
   trivy:

@@ -16,17 +16,30 @@ jobs:
       issues: write
       pull-requests: write
       repository-projects: write
-
-  sonarqube:
-    uses: ./.github/workflows/sonarqube.yml
-  trivy:
-    uses: ./.github/workflows/trivy.yml
   # devos:
   #   uses: ./.github/workflows/devos.yml
-
-  scorecard:
-    uses: ./.github/workflows/scorecard.yml
+  trivy:
+    uses: ./.github/workflows/trivy.yml
     permissions:
       contents: write
       id-token: write
       security-events: write
+  scorecard:
+    uses: ./.github/workflows/scorecard.yml
+    permissions:
+      actions: read
+      attestations: read
+      checks: read
+      contents: read
+      deployments: read
+      discussions: read
+      id-token: write
+      issues: read
+      packages: read
+      pages: read
+      pull-requests: read
+      repository-projects: read
+      security-events: write
+      statuses: read
+  # sonarqube:
+  #   uses: ./.github/workflows/sonarqube.yml

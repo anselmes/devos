@@ -1,19 +1,13 @@
 name: SonarQube
 
 on:
-  workflow_call:
-    inputs:
-      sonarqube:
-        type: boolean
-        default: false
-        description: Run SonarQube Quality Gate
+  - workflow_call
 
 permissions: read-all
 
 jobs:
   sonarqube:
     runs-on: ubuntu-latest
-    if: ${{ inputs.sonarqube }}
     steps:
       - name: Checkout code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
@@ -24,5 +18,5 @@ jobs:
         uses: sonarsource/sonarqube-quality-gate-action@d304d050d930b02a896b0f85935344f023928496 # v1.1.0 https://github.com/SonarSource/sonarqube-quality-gate-action/commit/d304d050d930b02a896b0f85935344f023928496
         timeout-minutes: 5
         env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          # SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

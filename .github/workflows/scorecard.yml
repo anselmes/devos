@@ -10,15 +10,15 @@ on:
         type: boolean
         description: Whether to publish results to OpenSSF REST API
 
-permissions:
-  contents: write
-  id-token: write
-  security-events: write
+permissions: read-all
 
 jobs:
   analysis:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      id-token: write
+      security-events: write
     steps:
       - name: Checkout code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
@@ -34,7 +34,7 @@ jobs:
           results_format: sarif
 
       - name: Upload artifact
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7  https://github.com/actions/checkout/commit/692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # v4.4.2 https://github.com/actions/upload-artifact/commit/84480863f228bb9747b473957fcc9e309aa96097
         with:
           path: results.sarif
 
