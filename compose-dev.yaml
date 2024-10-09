@@ -2,9 +2,6 @@
 services:
   devos:
     image: ghcr.io/anselmes/devos:main
-    # platform: linux/amd64
-    # entrypoint: /sbin/init
-    # network_mode: host
     privileged: true
     stdin_open: true
     tty: true
@@ -14,8 +11,6 @@ services:
     #   - .env
     volumes:
       - .:/home/devos/workspace
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - /var/lib/libvirt:/var/lib/libvirt
       - ~/.gitconfig:/home/devos/.gitconfig:ro
       - ~/.gnupg:/home/devos/.gnupg:ro
       - ~/.ssh:/home/devos/.ssh:ro
