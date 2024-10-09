@@ -1,7 +1,7 @@
-name: devOS Gate
+name: Gate
 
 on:
-  - workflow_call
+  - push
 
 permissions: read-all
 

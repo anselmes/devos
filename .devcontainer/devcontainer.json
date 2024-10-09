@@ -1,5 +1,5 @@
 {
-  "name": "DevOS",
+  "name": "devOS",
   "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
   "service": "devos",
   "workspaceFolder": "/home/devos/workspace",

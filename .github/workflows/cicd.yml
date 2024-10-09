@@ -11,21 +11,19 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: ./.github/workflows/bot.yml
+    uses: anselmes/cicd/.github/workflows/bot.yml@d432be297b0bd273290f1f27597fcae874705551 # main https://github.com/anselmes/cicd/commit/d432be297b0bd273290f1f27597fcae874705551
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
-  # devos:
-  #   uses: ./.github/workflows/devos.yml
   trivy:
-    uses: ./.github/workflows/trivy.yml
+    uses: anselmes/cicd/.github/workflows/trivy.yml@d432be297b0bd273290f1f27597fcae874705551 # main https://github.com/anselmes/cicd/commit/d432be297b0bd273290f1f27597fcae874705551
     permissions:
       contents: write
       id-token: write
       security-events: write
   scorecard:
-    uses: ./.github/workflows/scorecard.yml
+    uses: anselmes/cicd/.github/workflows/scorecard.yml@d432be297b0bd273290f1f27597fcae874705551 # main https://github.com/anselmes/cicd/commit/d432be297b0bd273290f1f27597fcae874705551
     permissions:
       actions: read
       attestations: read
@@ -42,4 +40,4 @@ jobs:
       security-events: write
       statuses: read
   # sonarqube:
-  #   uses: ./.github/workflows/sonarqube.yml
+  #   uses: anselmes/cicd/.github/workflows/sonarqube.yml@d432be297b0bd273290f1f27597fcae874705551 # main https://github.com/anselmes/cicd/commit/d432be297b0bd273290f1f27597fcae874705551
