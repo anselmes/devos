@@ -16,6 +16,6 @@ jobs:
           persist-credentials: false
       - name: Trivy Scan
         uses: ./.github/actions/trivy
-        # with:
-        #   generate-sbom: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
-        #   upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        with:
+          generate-sbom: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+          upload-scan-result: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}

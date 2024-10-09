@@ -1,4 +1,4 @@
-name: Cleanup
+name: Cleanup OnDemand
 
 on:
   pull_request:

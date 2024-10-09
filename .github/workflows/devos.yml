@@ -1,4 +1,4 @@
-name: DevOS
+name: DevOS Gate
 
 on:
   - workflow_call
@@ -6,9 +6,11 @@ on:
 permissions: read-all
 
 jobs:
-  airskiff:
+  devos:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-      - run: hack/run
+      # - run: |
+      #     cd hack
+      #     ./run

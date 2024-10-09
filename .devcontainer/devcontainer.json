@@ -1,15 +1,8 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
   "name": "DevOS",
-  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  // "image": "mcr.microsoft.com/devcontainers/base:dev-ubuntu",
-  // "build": {"dockerfile": "${localWorkspaceFolder}/build/package/Dockerfile"},
-  "dockerComposeFile": [
-    "${localWorkspaceFolder}/compose-dev.yaml"
-  ],
+  "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
   "service": "devos",
-  "workspaceFolder": "/workspace",
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "${containerWorkspaceFolder}/scripts/setup-devcontainer.sh"
+  "workspaceFolder": "/home/devos/workspace",
+  "postCreateCommand": "${containerWorkspaceFolder}/scripts/config-devos.sh",
+  "remoteUser": "devos"
 }

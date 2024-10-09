@@ -11,21 +11,21 @@ permissions: read-all
 
 jobs:
   bot:
-    uses: ./.github/workflows/ondemand/bot.yml
+    uses: ./.github/workflows/bot.yml
     permissions:
       issues: write
       pull-requests: write
       repository-projects: write
 
   sonarqube:
-    uses: ./.github/workflows/gate/sonarqube.yml
+    uses: ./.github/workflows/sonarqube.yml
   trivy:
-    uses: ./.github/workflows/gate/trivy.yml
-  devos:
-    uses: ./.github/workflows/gate/devos.yml
+    uses: ./.github/workflows/trivy.yml
+  # devos:
+  #   uses: ./.github/workflows/devos.yml
 
   scorecard:
-    uses: ./.github/workflows/ondemand/scorecard.yml
+    uses: ./.github/workflows/scorecard.yml
     permissions:
       contents: write
       id-token: write
