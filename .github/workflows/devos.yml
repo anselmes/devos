@@ -1,4 +1,4 @@
-name: DevOS Gate
+name: devOS Gate
 
 on:
   - workflow_call
