@@ -55,7 +55,3 @@ container:
       - any-glob-to-any-file:
           - build/**/Dockerfile
           - build/img/**/Dockerfile
-
-# Add 'release' label to any PR opened against the 'main' branch
-release:
-  - base-branch: main
