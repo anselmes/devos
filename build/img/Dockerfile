@@ -22,15 +22,15 @@ RUN apt-get update -y && \
   rm -rf /var/lib/apt/lists/*
 
 # todo: checksum downloaded binaries
-# COPY scripts/init-devos.sh /tmp/init-devos.sh
-# COPY scripts/install-docker.sh /tmp/install-docker.sh
-# RUN chmod +x \
-#   /tmp/init-devos.sh \
-#   /tmp/install-docker.sh && \
-#   /tmp/init-devos.sh && \
-#   echo "devos ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/devos && \
-#   systemctl enable journal-to-tty.service && \
-#   useradd -m devos
+COPY scripts/init-devos.sh /tmp/init-devos.sh
+COPY scripts/install-docker.sh /tmp/install-docker.sh
+RUN chmod +x \
+  /tmp/init-devos.sh \
+  /tmp/install-docker.sh && \
+  /tmp/init-devos.sh && \
+  echo "devos ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/devos && \
+  systemctl enable journal-to-tty.service && \
+  useradd -m devos
 
 CMD ["/sbin/init"]
 USER devos
