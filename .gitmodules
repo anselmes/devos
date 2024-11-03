@@ -3,4 +3,4 @@
 	url = https://github.com/anselmes/dotfiles.git
 [submodule "modules/tooling"]
 	path = modules/tooling
-	url = https://github.com/anselmes/tooling.git
+	url = git@github.com:anselmes/tooling.git

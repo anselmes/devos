@@ -1,0 +1,8 @@
+{
+  "name": "devOS",
+  "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
+  "service": "devos",
+  "workspaceFolder": "/home/devcontainer",
+  "postCreateCommand": "${containerWorkspaceFolder}/scripts/configure.sh",
+  "remoteUser": "devcontainer"
+}
