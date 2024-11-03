@@ -2,7 +2,7 @@
   "name": "devOS",
   "dockerComposeFile": ["${localWorkspaceFolder}/compose-dev.yaml"],
   "service": "devos",
-  "workspaceFolder": "/home/devos/workspace",
-  "postCreateCommand": "${containerWorkspaceFolder}/scripts/config-devos.sh",
-  "remoteUser": "devos"
+  "workspaceFolder": "/home/devcontainer",
+  "postCreateCommand": "${containerWorkspaceFolder}/scripts/configure.sh",
+  "remoteUser": "devcontainer"
 }
