@@ -157,7 +157,7 @@ fabric.properties
 *.vsix
 
 # Project files
-.*/
+.*
 .env
 !.devcontainer/
 !.github/

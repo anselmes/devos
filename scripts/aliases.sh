@@ -1,1 +1,1 @@
-modules/tooling/scripts/aliases.sh
+../modules/tooling/scripts/aliases.sh

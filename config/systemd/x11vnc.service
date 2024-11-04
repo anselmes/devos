@@ -1,9 +1,0 @@
-[Unit]
-Description=VNC Server
-
-[Service]
-Environment="HOME=/root"
-ExecStart=/usr/bin/x11vnc --create --forever --shared
-
-[Install]
-WantedBy=graphical.target

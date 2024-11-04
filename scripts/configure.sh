@@ -1,1 +1,1 @@
-modules/tooling/scripts/configure.sh
+../modules/tooling/scripts/configure.sh
